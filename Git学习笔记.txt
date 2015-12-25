@@ -1,0 +1,169 @@
+为数据仓库设置账号和Email
+git config --global user.name "wiu898"
+git config --global user.email ""
+
+进入一个目录将这个目录设置成git可以管理的仓库
+git init
+
+将文件添加到暂存区
+git add readme.txt
+
+文件提交
+git commit
+
+查看提交状态
+git status
+
+查看readme.txt文件到底改了什么内容
+git diff readme.txt
+
+查看历史记录
+git log
+
+版本回退操作
+git reset --hard HEAD^   回退到上个版本
+git reset --hard HEAD^   回退到上上个版本
+git reset --hard HEAD~100  回退到之前100个版本
+git reset --hard 版本号   回退到某个版本
+
+撤销所做修改
+git checkout -- readme.txt
+
+查看文件内容
+cat readme.txt
+
+获得操作版本号
+git reflog
+
+删除文件目录中的内容
+rm b.txt
+
+创建SSH Key
+ssh-keygen  -t rsa –C “youremail@example.com”
+
+得到远程库
+git remote add origin https://github.com/wiu898/testgit.git
+
+把本地仓库分支master内容推送到远程库
+git push -u origin master       把当前分支master推送到远程
+
+由于远程库是空的，我们第一次推送master分支时，加上了 –u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来， 在以后的推送或者拉取时就可以简化命令。
+git push origin master
+
+从远程库克隆到本地
+git clone https://github.com/wiu898/testgit2
+
+创建与合并分支
+在版本回填退里，你已经知道，每次提交，Git都把它们串成一条时间线，这条时间线就是一个分支。截止到目前，只有一条时间线，在Git里，这个分支叫主 分支，即master分支。HEAD严格来说不是指向提交，而是指向master，master才是指向提交的，所以，HEAD指向的就是当前分支。
+
+创建dev分支
+git checkout -b name   创建并切换分支
+
+创建分支
+git branch name
+
+查看当前的分支
+git branch     带*的为当前分支
+
+删除分支
+git branch -d name
+
+切换分支
+git checkout master
+
+合并指定分支到当前分支上
+git merge dev          将dev合并到master上
+
+禁用Fast forward模式合并分支
+git merge --no-ff -m "merge with no-ff" name
+
+隐藏当前工作现场
+git stash
+
+查看工作现场地址
+git stash list
+
+恢复工作现场
+git stash apply    这种方法stash并不删除还需要使用 git stash drop删除
+
+git stash pop  恢复的同时删除
+
+查看远程库的信息
+git remote
+
+查看远程库的详细信息
+git remote -v
+
+远程的origin的dev分支到本地
+git checkout -b dev origin/dev
+
+
+多人协作工作模式一般是这样的：
+首先，可以试图用git push origin branch-name推送自己的修改.
+如果推送失败，则因为远程分支比你的本地更新早，需要先用git pull试图合并。
+如果合并有冲突，则需要解决冲突，并在本地提交。再用git push origin branch-name推送。
+
+
+总结如下：
+
+mkdir：         XX (创建一个空目录 XX指目录名)
+
+   pwd：          显示当前目录的路径。
+
+   git init          把当前的目录变成可以管理的git仓库，生成隐藏.git文件。
+
+   git add XX       把xx文件添加到暂存区去。
+
+   git commit –m “XX”  提交文件 –m 后面的是注释。
+
+   git status        查看仓库状态
+
+   git diff  XX      查看XX文件修改了那些内容
+
+   git log          查看历史记录
+
+   git reset  –hard HEAD^ 或者 git reset  –hard HEAD~ 回退到上一个版本
+
+                        (如果想回退到100个版本，使用git reset –hard HEAD~100 )
+
+   cat XX         查看XX文件内容
+
+   git reflog       查看历史记录的版本号id
+
+   git checkout — XX  把XX文件在工作区的修改全部撤销。
+
+   git rm XX          删除XX文件
+
+   git remote add origin https://github.com/tugenhua0707/testgit 关联一个远程库
+
+   git push –u(第一次要用-u 以后不需要) origin master 把当前master分支推送到远程库
+
+   git clone https://github.com/tugenhua0707/testgit  从远程库中克隆
+
+   git checkout –b dev  创建dev分支 并切换到dev分支上
+
+   git branch  查看当前所有的分支
+
+   git checkout master 切换回master分支
+
+   git merge dev    在当前的分支上合并dev分支
+
+   git branch –d dev 删除dev分支
+
+   git branch name  创建分支
+
+   git stash 把当前的工作隐藏起来 等以后恢复现场后继续工作
+
+   git stash list 查看所有被隐藏的文件列表
+
+   git stash apply 恢复被隐藏的文件，但是内容不删除
+
+   git stash drop 删除文件
+
+   git stash pop 恢复文件的同时 也删除文件
+
+   git remote 查看远程库的信息
+
+   git remote –v 查看远程库的详细信息
+
+   git push origin master  Git会把master分支推送到远程库对应的远程分支上 

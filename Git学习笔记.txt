@@ -167,3 +167,7 @@ mkdir：         XX (创建一个空目录 XX指目录名)
    git remote –v 查看远程库的详细信息
 
    git push origin master  Git会把master分支推送到远程库对应的远程分支上 
+
+一种是 git rm --cached "文件路径"，不删除物理文件，仅将该文件从缓存中删除；
+一种是 git rm --f "文件路径"，不仅将该文件从缓存中删除，还会将物理文件删除（不会回收到垃圾桶）。
+
